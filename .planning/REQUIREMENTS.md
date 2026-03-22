@@ -7,8 +7,8 @@
 
 ### Audio Detection
 
-- [ ] **AUDIO-01**: App captures microphone audio via Web Audio API with user permission
-- [ ] **AUDIO-02**: App detects single piano notes in real-time from microphone input
+- [x] **AUDIO-01**: App captures microphone audio via Web Audio API with user permission
+- [x] **AUDIO-02**: App detects single piano notes in real-time from microphone input
 - [ ] **AUDIO-03**: App detects chords (multiple simultaneous notes) from microphone input
 - [ ] **AUDIO-04**: App plays song audio so user can hear what the piece should sound like
 
@@ -25,7 +25,7 @@
 
 ### Song Management
 
-- [ ] **SONG-01**: User can import standard MIDI files (.mid) as songs
+- [x] **SONG-01**: User can import standard MIDI files (.mid) as songs
 - [ ] **SONG-02**: User can browse and select from imported songs in a library view
 - [ ] **SONG-03**: App persists practice progress per song in browser storage
 
@@ -59,8 +59,8 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUDIO-01 | Phase 1 | Pending |
-| AUDIO-02 | Phase 1 | Pending |
+| AUDIO-01 | Phase 1 | Complete |
+| AUDIO-02 | Phase 1 | Complete |
 | AUDIO-03 | Phase 3 | Pending |
 | AUDIO-04 | Phase 2 | Pending |
 | VIZ-01 | Phase 2 | Pending |
@@ -68,7 +68,7 @@
 | VIZ-03 | Phase 4 | Pending |
 | PRAC-01 | Phase 3 | Pending |
 | PRAC-02 | Phase 3 | Pending |
-| SONG-01 | Phase 1 | Pending |
+| SONG-01 | Phase 1 | Complete |
 | SONG-02 | Phase 4 | Pending |
 | SONG-03 | Phase 4 | Pending |
 
