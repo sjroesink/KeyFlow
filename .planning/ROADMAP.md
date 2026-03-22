@@ -44,11 +44,12 @@ Plans:
   2. On-screen keyboard highlights expected notes as they arrive at the play line
   3. User can play, pause, and seek through a song using playback controls
   4. User hears a synthesized audio rendition of the song during playback
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
+- [ ] 02-01-PLAN.md — Nocturne Tailwind theme, playback types/store, and CSS piano keyboard with highlighting
+- [ ] 02-02-PLAN.md — PlaybackEngine, NoteScheduler, PianoRollRenderer, and binary search utilities
+- [ ] 02-03-PLAN.md — React integration: PracticeView layout, PlaybackControls, wiring, and human verification
 
 ### Phase 3: Practice Core
 **Goal**: User can practice a song with real-time feedback -- the app listens, evaluates, waits, and loops
@@ -88,6 +89,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Audio + MIDI Foundation | 3/3 | Complete   | 2026-03-22 |
-| 2. Visualization + Playback | 0/0 | Not started | - |
+| 2. Visualization + Playback | 0/3 | Not started | - |
 | 3. Practice Core | 0/0 | Not started | - |
 | 4. Library + Sheet Music | 0/0 | Not started | - |
