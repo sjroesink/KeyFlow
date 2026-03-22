@@ -28,11 +28,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. User plays a single note on a real piano and sees the detected note name displayed correctly in real-time
   3. User selects a .mid file from their computer and the app accepts it without error
   4. Detection works in Chrome, Firefox, and Safari (including iOS Safari mic permission flow)
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
+- [ ] 01-01-PLAN.md — Scaffold project, define type contracts, stores, utilities, and test infrastructure
+- [ ] 01-02-PLAN.md — Audio capture pipeline, pitch detection, microphone UI with human verification
+- [ ] 01-03-PLAN.md — MIDI file parser, import component, and song info display
 
 ### Phase 2: Visualization + Playback
 **Goal**: User can watch a MIDI song play as falling notes on a piano roll with an on-screen keyboard and hear the song
@@ -86,7 +87,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Audio + MIDI Foundation | 0/0 | Not started | - |
+| 1. Audio + MIDI Foundation | 0/3 | Planning complete | - |
 | 2. Visualization + Playback | 0/0 | Not started | - |
 | 3. Practice Core | 0/0 | Not started | - |
 | 4. Library + Sheet Music | 0/0 | Not started | - |
