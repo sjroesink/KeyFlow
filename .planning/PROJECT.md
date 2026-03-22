@@ -12,17 +12,17 @@ Real-time microphone-based note detection that reliably tells the user whether t
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ Microphone-based pitch/note detection (single notes) — Phase 1
+- ✓ MIDI file import for song library — Phase 1
 
 ### Active
 
-- [ ] Microphone-based pitch/note detection (single notes and chords)
+- [ ] Chord detection (multiple simultaneous notes)
 - [ ] Falling notes (piano roll) visualization synced to song playback
 - [ ] Traditional sheet music visualization as secondary view
 - [ ] Wait Mode — app listens and pauses until user plays the correct note(s)
 - [ ] Hand selection — practice right hand, left hand, or both
 - [ ] Loop function — select a section and replay it until perfected
-- [ ] MIDI file import for song library
 - [ ] On-screen piano keyboard showing expected and detected notes
 - [ ] Responsive layout for desktop and mobile browsers
 
@@ -59,4 +59,4 @@ Real-time microphone-based note detection that reliably tells the user whether t
 | No backend | Personal tool, localStorage sufficient, simplifies deployment | — Pending |
 
 ---
-*Last updated: 2026-03-22 after initialization*
+*Last updated: 2026-03-22 after Phase 1 completion*
