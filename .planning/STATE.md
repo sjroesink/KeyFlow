@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 01-02-PLAN.md (continuation after checkpoint)
-last_updated: "2026-03-22T20:17:40.400Z"
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-03-22T21:01:03.048Z"
 progress:
   total_phases: 4
   completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
+  total_plans: 6
+  completed_plans: 4
 ---
 
 # Project State
@@ -19,31 +19,32 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-22)
 
 **Core value:** Real-time microphone-based note detection that reliably tells the user whether they played the right note
-**Current focus:** Phase 01 — audio-midi-foundation
+**Current focus:** Phase 02 — visualization-playback
 
 ## Current Position
 
-Phase: 01 (audio-midi-foundation) — COMPLETE
-Plan: 3 of 3
+Phase: 02 (visualization-playback) — EXECUTING
+Plan: 2 of 3
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 3
-- Average duration: 8min
-- Total execution time: 0.40 hours
+- Total plans completed: 4
+- Average duration: 7min
+- Total execution time: 0.48 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-audio-midi-foundation | 3/3 | 24min | 8min |
+| 02-visualization-playback | 1/3 | 5min | 5min |
 
 **Recent Trend:**
 
-- Last 5 plans: -
-- Trend: -
+- Last 5 plans: 8min, 8min, 8min, 5min
+- Trend: improving
 
 *Updated after each plan completion*
 
@@ -64,6 +65,8 @@ Recent decisions affecting current work:
 - [01-03]: Song name falls back to filename when MIDI header has no name
 - [Phase 01-02]: Used pitchy with pre-allocated buffer and rAF detection loop for real-time piano pitch detection
 - [Phase 01-02]: All browser audio processing (echoCancellation, noiseSuppression, autoGainControl) disabled for accurate piano input
+- [Phase 02-01]: Used Tailwind v4 @theme syntax for Nocturne tokens instead of tailwind.config.js extend
+- [Phase 02-01]: PianoKeyboard reads stores internally rather than accepting highlight state as props
 
 ### Pending Todos
 
@@ -77,6 +80,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T20:05:34.481Z
-Stopped at: Completed 01-02-PLAN.md (continuation after checkpoint)
+Last session: 2026-03-22T21:01:03.046Z
+Stopped at: Completed 02-01-PLAN.md
 Resume file: None

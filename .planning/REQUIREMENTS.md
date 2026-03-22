@@ -15,7 +15,7 @@
 ### Visualization
 
 - [ ] **VIZ-01**: Falling notes (piano roll) display scrolls toward on-screen keyboard synced to song timing
-- [ ] **VIZ-02**: On-screen piano keyboard highlights expected notes and detected notes in distinct colors
+- [x] **VIZ-02**: On-screen piano keyboard highlights expected notes and detected notes in distinct colors
 - [ ] **VIZ-03**: Traditional sheet music view renders the current song with note highlighting
 
 ### Practice
@@ -64,7 +64,7 @@
 | AUDIO-03 | Phase 3 | Pending |
 | AUDIO-04 | Phase 2 | Pending |
 | VIZ-01 | Phase 2 | Pending |
-| VIZ-02 | Phase 2 | Pending |
+| VIZ-02 | Phase 2 | Complete |
 | VIZ-03 | Phase 4 | Pending |
 | PRAC-01 | Phase 3 | Pending |
 | PRAC-02 | Phase 3 | Pending |
