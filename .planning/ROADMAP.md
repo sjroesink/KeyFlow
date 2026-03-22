@@ -12,7 +12,7 @@ WebPianoLearner delivers a browser-based piano practice tool in four phases, ord
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Audio + MIDI Foundation** - Microphone capture, single-note pitch detection, and MIDI file parsing
+- [x] **Phase 1: Audio + MIDI Foundation** - Microphone capture, single-note pitch detection, and MIDI file parsing (completed 2026-03-22)
 - [ ] **Phase 2: Visualization + Playback** - Falling notes piano roll, on-screen keyboard, and song audio playback
 - [ ] **Phase 3: Practice Core** - Wait mode, chord detection, and loop practice integrated with the visualization
 - [ ] **Phase 4: Library + Sheet Music** - Song library management, progress persistence, and sheet music view
@@ -28,7 +28,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. User plays a single note on a real piano and sees the detected note name displayed correctly in real-time
   3. User selects a .mid file from their computer and the app accepts it without error
   4. Detection works in Chrome, Firefox, and Safari (including iOS Safari mic permission flow)
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 
 Plans:
 - [ ] 01-01-PLAN.md — Scaffold project, define type contracts, stores, utilities, and test infrastructure
@@ -87,7 +87,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Audio + MIDI Foundation | 0/3 | Planning complete | - |
+| 1. Audio + MIDI Foundation | 3/3 | Complete   | 2026-03-22 |
 | 2. Visualization + Playback | 0/0 | Not started | - |
 | 3. Practice Core | 0/0 | Not started | - |
 | 4. Library + Sheet Music | 0/0 | Not started | - |

@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 01-03-PLAN.md
-last_updated: "2026-03-22T19:56:26Z"
+stopped_at: Completed 01-02-PLAN.md (continuation after checkpoint)
+last_updated: "2026-03-22T20:05:34.483Z"
 progress:
   total_phases: 4
   completed_phases: 1
@@ -62,6 +62,8 @@ Recent decisions affecting current work:
 - [01-03]: Used @tonejs/midi Midi class for MIDI parsing
 - [01-03]: Percussion tracks filtered via instrument.percussion flag
 - [01-03]: Song name falls back to filename when MIDI header has no name
+- [Phase 01-02]: Used pitchy with pre-allocated buffer and rAF detection loop for real-time piano pitch detection
+- [Phase 01-02]: All browser audio processing (echoCancellation, noiseSuppression, autoGainControl) disabled for accurate piano input
 
 ### Pending Todos
 
@@ -75,6 +77,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T19:56:26Z
-Stopped at: Completed 01-03-PLAN.md
+Last session: 2026-03-22T20:05:34.481Z
+Stopped at: Completed 01-02-PLAN.md (continuation after checkpoint)
 Resume file: None
