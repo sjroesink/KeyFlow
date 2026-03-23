@@ -60,11 +60,12 @@ Plans:
   2. On-screen keyboard highlights both the expected note (what to play) and the detected note (what was played) in distinct colors simultaneously
   3. User can play chords and the app detects multiple simultaneous notes with reasonable tolerance
   4. User can select a section of the song and loop it, with the loop repeating automatically until stopped
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md — Practice types, ChordDetector, NoteEvaluator, and practiceStore with tests
+- [ ] 03-02-PLAN.md — PlaybackEngine practice mode, audio pipeline chord detection, PianoKeyboard multi-note support
+- [ ] 03-03-PLAN.md — Practice UI controls (wait mode toggle, loop selection, waiting notification) with human verification
 
 ### Phase 4: Library + Sheet Music
 **Goal**: User has a complete practice environment with song management, progress tracking, and an alternative notation view
@@ -90,5 +91,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 |-------|----------------|--------|-----------|
 | 1. Audio + MIDI Foundation | 3/3 | Complete   | 2026-03-22 |
 | 2. Visualization + Playback | 3/3 | Complete   | 2026-03-23 |
-| 3. Practice Core | 0/0 | Not started | - |
+| 3. Practice Core | 0/3 | Not started | - |
 | 4. Library + Sheet Music | 0/0 | Not started | - |
