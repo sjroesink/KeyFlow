@@ -8,6 +8,16 @@ export class AudioPipeline {
     return this._analyser;
   }
 
+  /** Expose AudioContext for reuse by playback engine (shared context strategy) */
+  get audioContext(): AudioContext | null {
+    return this.ctx;
+  }
+
+  /** Create a fresh AudioContext for playback-only mode */
+  static createAudioContext(): AudioContext {
+    return new AudioContext();
+  }
+
   /** Must be called from a click handler (user gesture requirement) */
   async start(): Promise<void> {
     // Create AudioContext on user gesture
