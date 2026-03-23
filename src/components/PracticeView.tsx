@@ -39,7 +39,11 @@ export function PracticeView() {
 
   if (!song) return null;
 
-  const noteNames = waitingForNotes.map((m) => Note.fromMidi(m)).join(', ');
+  const noteNames = waitingForNotes.map((m) => Note.fromMidi(m));
+  const waitLabel =
+    noteNames.length > 1
+      ? noteNames.join(' + ')
+      : noteNames[0] ?? '';
 
   return (
     <div className="min-h-screen bg-background text-on-surface font-body flex flex-col overflow-hidden">
@@ -81,7 +85,7 @@ export function PracticeView() {
               </svg>
               <span className="text-sm font-medium tracking-wide text-on-surface-variant">
                 Waiting for{' '}
-                <span className="text-secondary font-bold">{noteNames}</span>
+                <span className="text-secondary font-bold">{waitLabel}</span>
               </span>
             </div>
           )}
