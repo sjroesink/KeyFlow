@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-03-23T07:31:53.863Z"
+stopped_at: Completed 03-02-PLAN.md
+last_updated: "2026-03-23T07:37:14.378Z"
 progress:
   total_phases: 4
   completed_phases: 2
   total_plans: 9
-  completed_plans: 7
+  completed_plans: 8
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-22)
 ## Current Position
 
 Phase: 03 (practice-core) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 
 ## Performance Metrics
 
@@ -50,6 +50,7 @@ Plan: 2 of 3
 | Phase 02 P02 | 4min | 2 tasks | 9 files |
 | Phase 02-03 P03 | 12min | 2 tasks | 5 files |
 | Phase 03 P01 | 3min | 2 tasks | 7 files |
+| Phase 03 P02 | 3min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -78,6 +79,8 @@ Recent decisions affecting current work:
 - [Phase 03]: Single-note evaluations use threshold 1.0 while chords default to 0.75
 - [Phase 03]: ChordDetector uses fftSize=8192 for ~5.4 Hz/bin frequency resolution
 - [Phase 03]: Harmonic filtering sorts peaks low-to-high, removes near-integer multiples 2x-8x within 5%
+- [Phase 03]: Loop boundary check placed before auto-stop to avoid song-end reset on loop regions
+- [Phase 03]: Wait mode recalibrates AudioContext clock on resume to prevent time drift
 
 ### Pending Todos
 
@@ -91,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-23T07:31:53.861Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-03-23T07:37:14.376Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
