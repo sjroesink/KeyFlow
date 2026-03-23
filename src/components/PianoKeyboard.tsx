@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { Note } from 'tonal';
 import { usePlaybackStore } from '../store/playbackStore';
 import { useAudioStore } from '../store/audioStore';
+import { usePracticeStore } from '../store/practiceStore';
 import { isBlackKey } from '../visualization/colors';
 
 interface PianoKeyboardProps {
@@ -16,9 +17,10 @@ function getHighlight(
   midi: number,
   activeNotes: number[],
   detectedMidi: number | null,
+  detectedChord: number[],
 ): HighlightState {
   const isExpected = activeNotes.includes(midi);
-  const isDetected = detectedMidi === midi;
+  const isDetected = detectedMidi === midi || detectedChord.includes(midi);
 
   if (isExpected && isDetected) return 'correct';
   if (isExpected) return 'expected';
@@ -62,6 +64,7 @@ export function PianoKeyboard({ startMidi = 21, endMidi = 108 }: PianoKeyboardPr
   const activeNotes = usePlaybackStore((s) => s.activeNotes);
   const detectedPitch = useAudioStore((s) => s.detectedPitch);
   const detectedMidi = detectedPitch?.midiNumber ?? null;
+  const detectedChord = usePracticeStore((s) => s.detectedChord);
 
   const keys = useMemo(() => {
     const result: { midi: number; black: boolean }[] = [];
@@ -74,7 +77,7 @@ export function PianoKeyboard({ startMidi = 21, endMidi = 108 }: PianoKeyboardPr
   return (
     <div className="flex items-start" role="group" aria-label="Piano keyboard">
       {keys.map(({ midi, black }) => {
-        const highlight = getHighlight(midi, activeNotes, detectedMidi);
+        const highlight = getHighlight(midi, activeNotes, detectedMidi, detectedChord);
         const classes = black
           ? getBlackKeyClasses(highlight)
           : getWhiteKeyClasses(highlight);
