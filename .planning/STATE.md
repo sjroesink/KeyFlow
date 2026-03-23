@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 02-03-PLAN.md
-last_updated: "2026-03-23T07:05:25.091Z"
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-23T07:31:53.863Z"
 progress:
   total_phases: 4
   completed_phases: 2
-  total_plans: 6
-  completed_plans: 6
+  total_plans: 9
+  completed_plans: 7
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-22)
 
 **Core value:** Real-time microphone-based note detection that reliably tells the user whether they played the right note
-**Current focus:** Phase 02 — visualization-playback
+**Current focus:** Phase 03 — practice-core
 
 ## Current Position
 
-Phase: 02 (visualization-playback) — COMPLETE
-Plan: 3 of 3 (all complete)
+Phase: 03 (practice-core) — EXECUTING
+Plan: 2 of 3
 
 ## Performance Metrics
 
@@ -49,6 +49,7 @@ Plan: 3 of 3 (all complete)
 *Updated after each plan completion*
 | Phase 02 P02 | 4min | 2 tasks | 9 files |
 | Phase 02-03 P03 | 12min | 2 tasks | 5 files |
+| Phase 03 P01 | 3min | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,9 @@ Recent decisions affecting current work:
 - [Phase 02-03]: Canvas ref callback with ResizeObserver for DPI-aware rendering
 - [Phase 02-03]: usePlaybackEngine hook owns full engine+instrument lifecycle including AudioContext cleanup
 - [Phase 02-03]: App.tsx conditional render based on songStore.song rather than router
+- [Phase 03]: Single-note evaluations use threshold 1.0 while chords default to 0.75
+- [Phase 03]: ChordDetector uses fftSize=8192 for ~5.4 Hz/bin frequency resolution
+- [Phase 03]: Harmonic filtering sorts peaks low-to-high, removes near-integer multiples 2x-8x within 5%
 
 ### Pending Todos
 
@@ -87,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-23T07:00:40.854Z
-Stopped at: Completed 02-03-PLAN.md
+Last session: 2026-03-23T07:31:53.861Z
+Stopped at: Completed 03-01-PLAN.md
 Resume file: None

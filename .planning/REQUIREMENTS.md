@@ -9,7 +9,7 @@
 
 - [x] **AUDIO-01**: App captures microphone audio via Web Audio API with user permission
 - [x] **AUDIO-02**: App detects single piano notes in real-time from microphone input
-- [ ] **AUDIO-03**: App detects chords (multiple simultaneous notes) from microphone input
+- [x] **AUDIO-03**: App detects chords (multiple simultaneous notes) from microphone input
 - [x] **AUDIO-04**: App plays song audio so user can hear what the piece should sound like
 
 ### Visualization
@@ -20,8 +20,8 @@
 
 ### Practice
 
-- [ ] **PRAC-01**: Wait mode pauses song progression until user plays the correct note(s)
-- [ ] **PRAC-02**: User can select and loop a specific section of a song for repeated practice
+- [x] **PRAC-01**: Wait mode pauses song progression until user plays the correct note(s)
+- [x] **PRAC-02**: User can select and loop a specific section of a song for repeated practice
 
 ### Song Management
 
@@ -61,13 +61,13 @@
 |-------------|-------|--------|
 | AUDIO-01 | Phase 1 | Complete |
 | AUDIO-02 | Phase 1 | Complete |
-| AUDIO-03 | Phase 3 | Pending |
+| AUDIO-03 | Phase 3 | Complete |
 | AUDIO-04 | Phase 2 | Complete |
 | VIZ-01 | Phase 2 | Complete |
 | VIZ-02 | Phase 2 | Complete |
 | VIZ-03 | Phase 4 | Pending |
-| PRAC-01 | Phase 3 | Pending |
-| PRAC-02 | Phase 3 | Pending |
+| PRAC-01 | Phase 3 | Complete |
+| PRAC-02 | Phase 3 | Complete |
 | SONG-01 | Phase 1 | Complete |
 | SONG-02 | Phase 4 | Pending |
 | SONG-03 | Phase 4 | Pending |
