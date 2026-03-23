@@ -166,6 +166,8 @@ export class PlaybackEngine {
           this.frozenTime = t;
           this.waitingForNotes = expected;
           usePracticeStore.getState().setIsWaiting(true, expected);
+          // Sync active notes so keyboard highlights expected keys while waiting
+          this.syncToStore(t);
           // Render frozen frame and continue loop
           this.renderer?.draw(t, this.song.notes);
           this.rafId = requestAnimationFrame(this.tick);

@@ -65,6 +65,14 @@ export function PianoKeyboard({ startMidi = 21, endMidi = 108 }: PianoKeyboardPr
   const detectedPitch = useAudioStore((s) => s.detectedPitch);
   const detectedMidi = detectedPitch?.midiNumber ?? null;
   const detectedChord = usePracticeStore((s) => s.detectedChord);
+  const waitingForNotes = usePracticeStore((s) => s.waitingForNotes);
+
+  // Merge activeNotes with waitingForNotes so keyboard always shows expected keys in wait mode
+  const expectedNotes = useMemo(() => {
+    if (waitingForNotes.length === 0) return activeNotes;
+    const merged = new Set([...activeNotes, ...waitingForNotes]);
+    return Array.from(merged);
+  }, [activeNotes, waitingForNotes]);
 
   const keys = useMemo(() => {
     const result: { midi: number; black: boolean }[] = [];
@@ -77,7 +85,7 @@ export function PianoKeyboard({ startMidi = 21, endMidi = 108 }: PianoKeyboardPr
   return (
     <div className="flex items-start" role="group" aria-label="Piano keyboard">
       {keys.map(({ midi, black }) => {
-        const highlight = getHighlight(midi, activeNotes, detectedMidi, detectedChord);
+        const highlight = getHighlight(midi, expectedNotes, detectedMidi, detectedChord);
         const classes = black
           ? getBlackKeyClasses(highlight)
           : getWhiteKeyClasses(highlight);
