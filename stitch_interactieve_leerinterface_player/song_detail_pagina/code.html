@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary-fixed": "#83fba5",
+            "on-secondary-fixed-variant": "#574500",
+            "on-tertiary-fixed": "#00210c",
+            "inverse-on-surface": "#283044",
+            "secondary-fixed-dim": "#e9c349",
+            "surface-container-low": "#131b2e",
+            "secondary": "#e9c349",
+            "surface-tint": "#b5c4ff",
+            "on-secondary-fixed": "#241a00",
+            "on-surface-variant": "#c4c5d9",
+            "on-error-container": "#ffdad6",
+            "on-tertiary-fixed-variant": "#005227",
+            "surface-container-high": "#222a3d",
+            "surface-variant": "#2d3449",
+            "error-container": "#93000a",
+            "primary-fixed": "#dbe1ff",
+            "on-tertiary": "#003919",
+            "inverse-primary": "#1653d6",
+            "on-error": "#690005",
+            "on-primary-fixed-variant": "#003dab",
+            "on-background": "#dae2fd",
+            "surface-dim": "#0b1326",
+            "secondary-container": "#af8d11",
+            "on-primary-fixed": "#00174c",
+            "surface-container-lowest": "#060e20",
+            "secondary-fixed": "#ffe088",
+            "background": "#0b1326",
+            "surface-container-highest": "#2d3449",
+            "tertiary-fixed-dim": "#66dd8b",
+            "on-surface": "#dae2fd",
+            "on-secondary": "#3c2f00",
+            "outline-variant": "#434656",
+            "surface": "#0b1326",
+            "surface-bright": "#31394d",
+            "tertiary": "#66dd8b",
+            "on-tertiary-container": "#c1ffcb",
+            "inverse-surface": "#dae2fd",
+            "primary-container": "#2f63e6",
+            "on-secondary-container": "#342800",
+            "error": "#ffb4ab",
+            "primary-fixed-dim": "#b5c4ff",
+            "outline": "#8e90a2",
+            "surface-container": "#171f33",
+            "tertiary-container": "#007e3f",
+            "on-primary": "#00297a",
+            "primary": "#b5c4ff",
+            "on-primary-container": "#eeefff"
+          },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-effect {
+      background: rgba(45, 52, 73, 0.6);
+      backdrop-filter: blur(12px);
+    }
+    .hero-gradient {
+      background: linear-gradient(135deg, #2f63e6 0%, #b5c4ff 100%);
+    }
+    .asymmetric-offset {
+      transform: translate(2rem, -3rem);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-16 bg-[#0b1326]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-[#dae2fd]">Nocturne</span>
+<nav class="hidden md:flex gap-6 font-manrope text-sm font-medium tracking-wide">
+<a class="text-[#8e90a2] hover:text-[#dae2fd] transition-colors" href="#">Library</a>
+<a class="text-[#8e90a2] hover:text-[#dae2fd] transition-colors" href="#">Progress</a>
+<a class="text-[#8e90a2] hover:text-[#dae2fd] transition-colors" href="#">Courses</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-[#b5c4ff] hover:bg-[#2d3449] rounded-lg transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-[#b5c4ff] hover:bg-[#2d3449] rounded-lg transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="User profile avatar" data-alt="Close up of a professional male user avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmqjCThzrTfDP8ewvyISDjIClld5q-OXHEXfq_SJ6EIasE_NUMtmTifZUOpTMXVh1u3Wpb8l6nEpU65ABJ52YGm6yffeDky9B3ITDQpEMHygDDYKYtRRl3SKJBbRH6UFPZZegewXJyGtKC9vmMQshoA5WMBIECfnaygQ9Md7egArIhTuzqhbZu9k8xu6aHj5mPKuw_susKHx3M0AH7ibBEh3MMoHgWqV6Kz_76SSw1bEHux2_sYoSFd55vuadplF0hHrvWoifT7Ek3"/>
+</div>
+</div>
+</header>
+<!-- Main Content Layout -->
+<div class="flex pt-16 min-h-screen">
+<!-- SideNavBar (Suppressed for detail page per instructions - focused journey) -->
+<!-- Content Canvas -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-6 md:px-12 py-12">
+<!-- Back Action -->
+<div class="mb-12">
+<button class="flex items-center gap-2 text-outline hover:text-on-surface transition-colors group">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+<span class="font-medium">Back to Library</span>
+</button>
+</div>
+<!-- Hero Section: Editorial Asymmetry -->
+<div class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-24">
+<!-- Cover Image -->
+<div class="lg:col-span-7 relative">
+<div class="aspect-[16/10] rounded-xl overflow-hidden shadow-[0_20px_40px_rgba(6,14,32,0.4)]">
+<img alt="Moonlight Sonata sheet music" class="w-full h-full object-cover" data-alt="Vintage grand piano with sheet music in low dramatic light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHx4Ct0Bq9wMjFsb2i_6YcxdW34FkiiBd7aLFAYBLIvlVgUZM1U_5YVyXGkbaR_XqizOUm4fkYielaecugAz3v-C4ijJObWyCh9DBzX03OLxdvNpuPzsGlKJtD_gI32z2hHgppyDmJq-A-IQd3GfFYGfeEwpDlJ3hrs0Q1-P7XeKwq_U_0nDau2gqMCcdEkqXgDKk2kfwKV4V5Ttquh5dRUaZV0pboAJuMAOWnOAd2rZ-FtjkHNSCSSSP679CkLI3_Cm4617LnyC01"/>
+</div>
+<!-- Play Preview Floating Button -->
+<button class="absolute bottom-6 right-6 glass-effect p-6 rounded-full text-secondary hover:scale-110 transition-transform shadow-2xl active:scale-90">
+<span class="material-symbols-outlined text-4xl" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<!-- Song Metadata: Intentional Offset -->
+<div class="lg:col-span-5 lg:pl-8 pb-4">
+<div class="inline-block px-3 py-1 rounded-full bg-surface-container-high text-secondary text-xs font-bold tracking-widest mb-6 uppercase">
+            Level 4 • Intermediate
+          </div>
+<h1 class="font-headline text-5xl md:text-6xl font-extrabold tracking-tighter text-on-surface mb-4 leading-tight">
+            Moonlight Sonata
+          </h1>
+<p class="font-headline text-2xl text-primary font-medium mb-8">
+            Ludwig van Beethoven
+          </p>
+<div class="flex gap-12 mb-10">
+<div>
+<span class="block text-outline text-xs uppercase tracking-widest mb-1">Tempo</span>
+<span class="text-xl font-medium">Adagio</span>
+</div>
+<div>
+<span class="block text-outline text-xs uppercase tracking-widest mb-1">Key</span>
+<span class="text-xl font-medium">C# Minor</span>
+</div>
+<div>
+<span class="block text-outline text-xs uppercase tracking-widest mb-1">Duration</span>
+<span class="text-xl font-medium">6:15</span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="hero-gradient text-on-primary-container px-10 py-4 rounded-full font-bold text-lg flex items-center justify-center gap-3 shadow-lg hover:brightness-110 transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="piano">piano</span>
+              Start Learning
+            </button>
+<button class="border border-outline-variant/15 hover:bg-surface-container-highest px-10 py-4 rounded-full font-bold text-lg text-on-surface transition-all active:scale-95">
+              Preview Clip
+            </button>
+</div>
+</div>
+</div>
+<!-- Detail Grid: Bento Inspired -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Description -->
+<div class="md:col-span-2 bg-surface-container-low p-10 rounded-xl">
+<h3 class="font-headline text-2xl font-bold mb-6">About the Piece</h3>
+<p class="text-on-surface-variant leading-relaxed text-lg max-w-2xl">
+            The Piano Sonata No. 14, popularly known as the Moonlight Sonata, is one of Beethoven's most enduring works. Completed in 1801, it broke traditional sonata form by beginning with a slow, hypnotic movement that feels more like a fantasy than a formal allegro.
+          </p>
+<p class="text-on-surface-variant leading-relaxed text-lg mt-4 max-w-2xl">
+            For the student, this piece represents a mastery of emotional restraint and rhythmic precision within the famous triplets of the first movement.
+          </p>
+</div>
+<!-- Learning Objectives -->
+<div class="bg-surface-container-high p-10 rounded-xl flex flex-col justify-between">
+<div>
+<h3 class="font-headline text-2xl font-bold mb-8">What you will learn</h3>
+<ul class="space-y-6">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-tertiary mt-1" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-on-surface font-medium">Sustained arpeggio control</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-tertiary mt-1" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-on-surface font-medium">Advanced pedal technique</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-tertiary mt-1" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-on-surface font-medium">Dynamic shading (pp to mf)</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-tertiary mt-1" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-on-surface font-medium">Left-hand melodic phrasing</span>
+</li>
+</ul>
+</div>
+<div class="mt-12 pt-8 border-t border-outline-variant/15">
+<div class="flex items-center justify-between text-sm text-outline mb-2">
+<span>Estimated Completion</span>
+<span class="text-on-surface font-bold">12 Lessons</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-1/3"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacing block -->
+<div class="h-24"></div>
+<!-- Related Practice (Editorial List) -->
+<section>
+<div class="flex items-end justify-between mb-10">
+<h3 class="font-headline text-3xl font-bold">Related Exercises</h3>
+<a class="text-primary font-bold hover:underline" href="#">View All</a>
+</div>
+<div class="space-y-8">
+<!-- Exercise Item -->
+<div class="group flex items-center justify-between p-6 rounded-xl hover:bg-surface-bright transition-all cursor-pointer">
+<div class="flex items-center gap-8">
+<div class="w-16 h-16 bg-surface-container-highest rounded-lg flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-3xl" data-icon="analytics">analytics</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-on-surface">C# Minor Arpeggio Drills</h4>
+<p class="text-outline">Technical Foundation • 10 mins</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-tertiary font-bold">Recommended</span>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Exercise Item -->
+<div class="group flex items-center justify-between p-6 rounded-xl hover:bg-surface-bright transition-all cursor-pointer">
+<div class="flex items-center gap-8">
+<div class="w-16 h-16 bg-surface-container-highest rounded-lg flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-3xl" data-icon="tune">tune</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-on-surface">Pedal Synchronization Workshop</h4>
+<p class="text-outline">Artistic Mastery • 15 mins</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-outline">Optional</span>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-safe md:hidden bg-[#2d3449]/60 backdrop-blur-xl shadow-[0_-10px_30px_rgba(6,14,32,0.5)] rounded-t-2xl">
+<div class="flex flex-col items-center justify-center text-[#8e90a2] hover:text-[#dae2fd]">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-inter text-[10px] uppercase tracking-widest mt-1">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#e9c349] scale-110">
+<span class="material-symbols-outlined" data-icon="music_note" style="font-variation-settings: 'FILL' 1;">music_note</span>
+<span class="font-inter text-[10px] uppercase tracking-widest mt-1">Songs</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#8e90a2] hover:text-[#dae2fd]">
+<span class="material-symbols-outlined" data-icon="piano">piano</span>
+<span class="font-inter text-[10px] uppercase tracking-widest mt-1">Practice</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#8e90a2] hover:text-[#dae2fd]">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-inter text-[10px] uppercase tracking-widest mt-1">Profile</span>
+</div>
+</nav>
+</body></html>

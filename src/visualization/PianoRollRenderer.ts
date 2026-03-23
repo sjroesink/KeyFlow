@@ -58,6 +58,11 @@ export class PianoRollRenderer {
     const keyboardWidth = 52 * WHITE_KEY_WIDTH; // 2288
     const scale = w / keyboardWidth;
 
+    // Debug: log once per second
+    if (Math.floor(currentTime) !== Math.floor(currentTime - 0.017)) {
+      console.debug('[piano-roll]', { w, h, scale, visibleNotes: getVisibleNotes(notes, currentTime, viewWindow).length, currentTime: currentTime.toFixed(2) });
+    }
+
     // Draw visible notes — positioned to match the keyboard below
     const visible = getVisibleNotes(notes, currentTime, viewWindow);
     for (const note of visible) {

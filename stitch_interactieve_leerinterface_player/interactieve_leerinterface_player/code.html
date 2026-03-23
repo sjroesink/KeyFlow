@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed": "#83fba5",
+                        "on-secondary-fixed-variant": "#574500",
+                        "on-tertiary-fixed": "#00210c",
+                        "inverse-on-surface": "#283044",
+                        "secondary-fixed-dim": "#e9c349",
+                        "surface-container-low": "#131b2e",
+                        "secondary": "#e9c349",
+                        "surface-tint": "#b5c4ff",
+                        "on-secondary-fixed": "#241a00",
+                        "on-surface-variant": "#c4c5d9",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#005227",
+                        "surface-container-high": "#222a3d",
+                        "surface-variant": "#2d3449",
+                        "error-container": "#93000a",
+                        "primary-fixed": "#dbe1ff",
+                        "on-tertiary": "#003919",
+                        "inverse-primary": "#1653d6",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#003dab",
+                        "on-background": "#dae2fd",
+                        "surface-dim": "#0b1326",
+                        "secondary-container": "#af8d11",
+                        "on-primary-fixed": "#00174c",
+                        "surface-container-lowest": "#060e20",
+                        "secondary-fixed": "#ffe088",
+                        "background": "#0b1326",
+                        "surface-container-highest": "#2d3449",
+                        "tertiary-fixed-dim": "#66dd8b",
+                        "on-surface": "#dae2fd",
+                        "on-secondary": "#3c2f00",
+                        "outline-variant": "#434656",
+                        "surface": "#0b1326",
+                        "surface-bright": "#31394d",
+                        "tertiary": "#66dd8b",
+                        "on-tertiary-container": "#c1ffcb",
+                        "inverse-surface": "#dae2fd",
+                        "primary-container": "#2f63e6",
+                        "on-secondary-container": "#342800",
+                        "error": "#ffb4ab",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "outline": "#8e90a2",
+                        "surface-container": "#171f33",
+                        "tertiary-container": "#007e3f",
+                        "on-primary": "#00297a",
+                        "primary": "#b5c4ff",
+                        "on-primary-container": "#eeefff"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .piano-key-white {
+            height: 180px;
+            width: 44px;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        .piano-key-black {
+            height: 110px;
+            width: 28px;
+            margin-left: -14px;
+            margin-right: -14px;
+            z-index: 10;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation Bar (Shared Component Style) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-16 bg-[#0b1326]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-[#dae2fd]">Nocturne</span>
+<div class="flex flex-col">
+<h1 class="font-headline font-bold text-lg text-on-surface leading-tight">Clair de Lune — Claude Debussy</h1>
+<div class="flex items-center gap-2">
+<div class="w-48 h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-[42%] h-full bg-primary-container"></div>
+</div>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline">42% Completed</span>
+</div>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-6 font-manrope text-sm font-medium tracking-wide">
+<a class="text-[#8e90a2] hover:text-[#dae2fd] transition-colors" href="#">Library</a>
+<a class="text-[#b5c4ff] border-b-2 border-[#b5c4ff] pb-1" href="#">Practice</a>
+<a class="text-[#8e90a2] hover:text-[#dae2fd] transition-colors" href="#">Courses</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-[#8e90a2] hover:bg-[#2d3449] rounded-lg transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant/15 flex items-center justify-center overflow-hidden">
+<img alt="User profile avatar" data-alt="User profile avatar circle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF4CGECMFQwg90-xOsrHSu0BirD3DfNGz9AZp2lo_VifflWfbXYqqhOjkN1yBY2F23jtWS7Td4xuPVPniC3gBb9Bauh2ZL6tY1kpeMLKyzKRj5mImWupLPSoJFCWmbDSZcwnH08scRihl2K1TJtiYBO-A8C3sX5vQ04g-OF3bHcYhHGrp58Ywoalb-AN8Mi7MzN0JZTPvbxl3GTAoRwC_OMrEvdpvyqlVchirmniOIHtMl9iaIUAiA-XeLVDiSb_9PFPFcrT1Nc_5H"/>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex-1 mt-16 flex flex-col items-center justify-center relative px-6 pb-48">
+<!-- Sheet Music Canvas -->
+<div class="w-full max-w-5xl aspect-[16/7] bg-surface-container-low rounded-xl relative overflow-hidden flex items-center justify-center group">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-surface/40 pointer-events-none"></div>
+<!-- Sheet Music Placeholder Representation -->
+<div class="w-full h-full p-12 flex flex-col justify-around">
+<!-- Music Stave 1 -->
+<div class="relative w-full h-24 border-y border-outline-variant/20 flex items-center">
+<div class="absolute left-0 h-full border-l-4 border-on-surface-variant/30 flex flex-col justify-center px-4">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant">gleaf</span>
+</div>
+<!-- Note Progress Marker (Active Wait Mode) -->
+<div class="absolute left-1/3 w-1 h-32 bg-secondary/80 z-20 shadow-[0_0_15px_rgba(233,195,73,0.5)]"></div>
+<!-- Notes Mockup -->
+<div class="flex gap-16 ml-32 items-center">
+<div class="flex flex-col items-center gap-1 opacity-40">
+<div class="w-4 h-3 bg-tertiary rounded-full rotate-[-20deg] shadow-[0_0_12px_#66dd8b]"></div>
+<div class="w-[1px] h-10 bg-on-surface"></div>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-4 h-3 bg-secondary rounded-full rotate-[-20deg] shadow-[0_0_12px_#e9c349]"></div>
+<div class="w-[1px] h-10 bg-on-surface"></div>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-20">
+<div class="w-4 h-3 bg-on-surface rounded-full rotate-[-20deg]"></div>
+<div class="w-[1px] h-10 bg-on-surface"></div>
+</div>
+</div>
+</div>
+<!-- Music Stave 2 -->
+<div class="relative w-full h-24 border-y border-outline-variant/20 flex items-center">
+<div class="absolute left-0 h-full border-l-4 border-on-surface-variant/30 flex flex-col justify-center px-4">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant">music_note</span>
+</div>
+<div class="flex gap-12 ml-40 items-center">
+<div class="flex flex-col items-center gap-1">
+<div class="w-4 h-3 bg-error rounded-full rotate-[-20deg]"></div>
+<div class="w-[1px] h-10 bg-on-surface"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Overlay Notification -->
+<div class="absolute top-8 left-1/2 -translate-x-1/2 glass-panel px-6 py-3 rounded-full border border-outline-variant/15 flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary animate-pulse">pause_circle</span>
+<span class="text-sm font-medium tracking-wide text-on-surface-variant">Waiting for <span class="text-secondary font-bold">Ab4</span></span>
+</div>
+</div>
+<!-- Floating Controls (Glassmorphism) -->
+<div class="absolute bottom-52 flex items-center gap-4">
+<!-- Tempo Control -->
+<div class="glass-panel px-6 py-4 rounded-2xl flex flex-col gap-2 min-w-[200px]">
+<div class="flex justify-between items-center">
+<span class="text-[10px] uppercase tracking-widest text-outline">Tempo</span>
+<span class="text-sm font-bold text-secondary">85%</span>
+</div>
+<input class="w-full h-1.5 bg-surface-container-highest rounded-full appearance-none cursor-pointer accent-secondary" type="range"/>
+</div>
+<!-- Loop Selection -->
+<button class="glass-panel h-16 px-6 rounded-2xl flex items-center gap-3 hover:bg-surface-bright transition-all group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">repeat</span>
+<span class="text-sm font-medium">Loop Bars 12-16</span>
+</button>
+<!-- Wait Mode Toggle -->
+<div class="glass-panel h-16 pl-6 pr-2 rounded-2xl flex items-center gap-6 border border-secondary/20">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-widest text-secondary font-bold">Wait Mode</span>
+<span class="text-xs text-on-surface-variant">Pauses for you</span>
+</div>
+<div class="w-12 h-6 bg-secondary rounded-full flex items-center justify-end px-1">
+<div class="w-4 h-4 bg-on-secondary rounded-full"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Virtual Keyboard & Controls Bottom Shell -->
+<footer class="fixed bottom-0 w-full z-40">
+<!-- Playback Progress Sub-Bar -->
+<div class="w-full h-1.5 bg-surface-container-highest">
+<div class="h-full bg-primary shadow-[0_0_15px_rgba(181,196,255,0.4)] w-[42%]"></div>
+</div>
+<div class="bg-surface-container-low px-8 py-4 flex items-end justify-center relative">
+<!-- Keyboard Container -->
+<div class="flex items-start">
+<!-- Octave Mockup -->
+<div class="flex">
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50 hover:bg-surface-bright transition-colors"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50 hover:bg-surface-bright transition-colors"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50 hover:bg-surface-bright transition-colors"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50 hover:bg-surface-bright transition-colors"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50 hover:bg-surface-bright transition-colors"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50 hover:bg-surface-bright transition-colors"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50 hover:bg-surface-bright transition-colors"></div>
+</div>
+<!-- Octave Active (Correct Note Green) -->
+<div class="flex">
+<div class="piano-key-white bg-tertiary shadow-[inset_0_-10px_20px_rgba(0,0,0,0.2)] border-r border-background/50"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<!-- The "Waiting" Note -->
+<div class="piano-key-white bg-secondary/90 shadow-[inset_0_-10px_20px_rgba(0,0,0,0.2)] border-r border-background/50 relative overflow-hidden">
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] font-bold text-on-secondary-container">Ab4</div>
+</div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50"></div>
+<!-- Error Note Red -->
+<div class="piano-key-black bg-error shadow-[inset_0_-5px_10px_rgba(0,0,0,0.4)]"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50"></div>
+</div>
+<!-- Octave Mockup -->
+<div class="flex">
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50"></div>
+<div class="piano-key-black bg-surface-container-lowest"></div>
+<div class="piano-key-white bg-on-surface-variant/10 border-r border-background/50"></div>
+</div>
+</div>
+<!-- Bottom Floating Global Actions -->
+<div class="absolute right-12 bottom-8 flex flex-col gap-4">
+<button class="w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-3xl">timer</span>
+</button>
+<button class="w-14 h-14 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center shadow-lg hover:scale-105 transition-transform border border-outline-variant/20">
+<span class="material-symbols-outlined text-3xl">settings_input_component</span>
+</button>
+</div>
+</div>
+</footer>
+<!-- Mobile Bottom Nav (Shared Component Style - Hidden on Desktop) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-safe md:hidden bg-[#2d3449]/60 backdrop-blur-xl rounded-t-2xl shadow-[0_-10px_30px_rgba(6,14,32,0.5)]">
+<div class="flex flex-col items-center justify-center text-[#8e90a2]">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-inter text-[10px] uppercase tracking-widest mt-1">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#e9c349] scale-110">
+<span class="material-symbols-outlined">piano</span>
+<span class="font-inter text-[10px] uppercase tracking-widest mt-1">Practice</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#8e90a2]">
+<span class="material-symbols-outlined">music_note</span>
+<span class="font-inter text-[10px] uppercase tracking-widest mt-1">Songs</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#8e90a2]">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-inter text-[10px] uppercase tracking-widest mt-1">Profile</span>
+</div>
+</nav>
+</body></html>

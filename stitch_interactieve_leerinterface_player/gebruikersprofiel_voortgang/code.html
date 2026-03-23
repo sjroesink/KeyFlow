@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nocturne - User Profile &amp; Progress</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed": "#83fba5",
+                        "on-secondary-fixed-variant": "#574500",
+                        "on-tertiary-fixed": "#00210c",
+                        "inverse-on-surface": "#283044",
+                        "secondary-fixed-dim": "#e9c349",
+                        "surface-container-low": "#131b2e",
+                        "secondary": "#e9c349",
+                        "surface-tint": "#b5c4ff",
+                        "on-secondary-fixed": "#241a00",
+                        "on-surface-variant": "#c4c5d9",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#005227",
+                        "surface-container-high": "#222a3d",
+                        "surface-variant": "#2d3449",
+                        "error-container": "#93000a",
+                        "primary-fixed": "#dbe1ff",
+                        "on-tertiary": "#003919",
+                        "inverse-primary": "#1653d6",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#003dab",
+                        "on-background": "#dae2fd",
+                        "surface-dim": "#0b1326",
+                        "secondary-container": "#af8d11",
+                        "on-primary-fixed": "#00174c",
+                        "surface-container-lowest": "#060e20",
+                        "secondary-fixed": "#ffe088",
+                        "background": "#0b1326",
+                        "surface-container-highest": "#2d3449",
+                        "tertiary-fixed-dim": "#66dd8b",
+                        "on-surface": "#dae2fd",
+                        "on-secondary": "#3c2f00",
+                        "outline-variant": "#434656",
+                        "surface": "#0b1326",
+                        "surface-bright": "#31394d",
+                        "tertiary": "#66dd8b",
+                        "on-tertiary-container": "#c1ffcb",
+                        "inverse-surface": "#dae2fd",
+                        "primary-container": "#2f63e6",
+                        "on-secondary-container": "#342800",
+                        "error": "#ffb4ab",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "outline": "#8e90a2",
+                        "surface-container": "#171f33",
+                        "tertiary-container": "#007e3f",
+                        "on-primary": "#00297a",
+                        "primary": "#b5c4ff",
+                        "on-primary-container": "#eeefff"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(12px);
+        }
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary-container selection:text-on-primary-container">
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-16 bg-[#0b1326] font-manrope text-sm font-medium tracking-wide">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-[#dae2fd]">Nocturne</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-[#8e90a2] hover:text-[#dae2fd] transition-colors" href="#">Library</a>
+<a class="text-[#8e90a2] hover:text-[#dae2fd] transition-colors" href="#">Progress</a>
+<a class="text-[#8e90a2] hover:text-[#dae2fd] transition-colors" href="#">Courses</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex bg-[#131b2e] rounded-full px-4 py-1.5 items-center gap-2">
+<span class="material-symbols-outlined text-outline text-sm">search</span>
+<span class="text-outline text-xs">Search for a piece...</span>
+</div>
+<button class="p-2 hover:bg-[#2d3449] rounded-lg transition-all text-[#b5c4ff]">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="flex items-center gap-3 pl-4">
+<img alt="User profile avatar" class="w-8 h-8 rounded-full" data-alt="User avatar with a focused artistic expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXy0hfne7F4UTymVJOUE6h6XTNRH5O8v7dSXekdhgQkrTLGFloCZD_B5rJfNCML4Bo_mYcFKf6iab8MFzaQV3XyibtnBEHTAs0M1EOA2X4wJy3a9-Ybj-aORjSECd3LXiUpfJYxZyj0zV-M9hl09hWz_yJf24uLdT7x6Gi1G_AzjNbowak5MCDrP201W9dlsyT6SnXWCSYuzlmimszK_piF4GSBcwgXJUTIHNSuMm9cYy6mzZjG8aS0WTgWwf6jQsDU1EpaTLkLXys"/>
+<button class="p-2 hover:bg-[#2d3449] rounded-lg transition-all text-[#b5c4ff]">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+</nav>
+<aside class="hidden md:flex flex-col h-screen fixed left-0 top-0 border-r border-[#434656]/15 bg-[#0b1326] w-64 pt-20 font-manrope text-base">
+<div class="px-6 mb-8">
+<h2 class="text-[#dae2fd] font-black text-xl">Welcome, Maestro</h2>
+<p class="text-[#8e90a2] text-sm">Level 4 • Intermediate</p>
+</div>
+<nav class="flex flex-col flex-1">
+<a class="text-[#8e90a2] px-6 py-3 hover:bg-[#131b2e] rounded-r-full group" href="#">
+<div class="flex items-center gap-3 transition-transform duration-150 group-active:translate-x-1">
+<span class="material-symbols-outlined">home</span>
+<span>Home</span>
+</div>
+</a>
+<a class="text-[#8e90a2] px-6 py-3 hover:bg-[#131b2e] rounded-r-full group" href="#">
+<div class="flex items-center gap-3 transition-transform duration-150 group-active:translate-x-1">
+<span class="material-symbols-outlined">library_music</span>
+<span>Library</span>
+</div>
+</a>
+<a class="text-[#8e90a2] px-6 py-3 hover:bg-[#131b2e] rounded-r-full group" href="#">
+<div class="flex items-center gap-3 transition-transform duration-150 group-active:translate-x-1">
+<span class="material-symbols-outlined">piano</span>
+<span>Practice</span>
+</div>
+</a>
+<a class="bg-[#222a3d] text-[#b5c4ff] rounded-r-full font-bold px-6 py-3 group" href="#">
+<div class="flex items-center gap-3 transition-transform duration-150 group-active:translate-x-1">
+<span class="material-symbols-outlined">person</span>
+<span>Profile</span>
+</div>
+</a>
+</nav>
+<div class="p-6 mt-auto space-y-4">
+<button class="w-full py-3 bg-gradient-to-br from-primary-container to-primary text-on-primary-container font-bold rounded-full text-sm">Upgrade to Pro</button>
+<div class="flex flex-col gap-1">
+<a class="text-[#8e90a2] hover:text-[#dae2fd] flex items-center gap-2 py-2 text-sm" href="#"><span class="material-symbols-outlined text-sm">help</span> Help</a>
+<a class="text-[#8e90a2] hover:text-[#dae2fd] flex items-center gap-2 py-2 text-sm" href="#"><span class="material-symbols-outlined text-sm">logout</span> Logout</a>
+</div>
+</div>
+</aside>
+<main class="md:pl-64 pt-24 pb-24 md:pb-12 px-6 md:px-12 max-w-7xl mx-auto">
+<header class="flex flex-col md:flex-row md:items-end gap-6 mb-16">
+<div class="relative">
+<div class="w-32 h-32 rounded-2xl overflow-hidden bg-surface-container-high ring-4 ring-primary/20">
+<img class="w-full h-full object-cover" data-alt="Profile portrait of a pianist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxZGJe59vVIP5WuYnhGSEWr5mO_FyENJ1alo2GfQII16_Jz1Oksmt_VVIRb8oPE1ujvbPXyLjAqfbSEXmN0NFSK_SFO_KVIq-jSaYmQCrxSY72DeVrhH35_IjivKuR0C_DfVzhiFpyBjomS7lJ26Ksvkrv72-Sww0TvfuVSod3SnKLnEEBMNNv_SkO4juiEb1_P3wPIt84WdZpLbQRdCGudOrrDj6Ef19Rp4XQs4GLLHjoGc_mXuSv6I6IFJpea9LvS7NzFBwia77K"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-secondary text-on-secondary px-3 py-1 rounded-full text-xs font-bold shadow-lg">PRO</div>
+</div>
+<div class="flex-1">
+<h1 class="font-headline text-5xl font-extrabold text-on-surface tracking-tight mb-2">Maestro Julian</h1>
+<p class="text-on-surface-variant font-medium text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">workspace_premium</span>
+                    Aspiring Virtuoso • Member since Oct 2023
+                </p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 bg-surface-container-high text-on-surface font-semibold rounded-full hover:bg-surface-bright transition-all">Edit Profile</button>
+<button class="px-6 py-2.5 bg-gradient-to-br from-primary-container to-primary text-on-primary-container font-bold rounded-full shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">Share Journey</button>
+</div>
+</header>
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="bg-surface-container-low p-8 rounded-2xl border-l-4 border-primary">
+<div class="flex items-center justify-between mb-4">
+<span class="text-outline uppercase tracking-widest text-xs font-bold">Total Practice Time</span>
+<span class="material-symbols-outlined text-primary">schedule</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline font-extrabold text-on-surface">148</span>
+<span class="text-on-surface-variant font-medium">Hours</span>
+</div>
+<p class="text-tertiary text-xs mt-2 flex items-center gap-1"><span class="material-symbols-outlined text-xs">trending_up</span> +12% from last month</p>
+</div>
+<div class="bg-surface-container-low p-8 rounded-2xl border-l-4 border-secondary">
+<div class="flex items-center justify-between mb-4">
+<span class="text-outline uppercase tracking-widest text-xs font-bold">Songs Mastered</span>
+<span class="material-symbols-outlined text-secondary">music_note</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline font-extrabold text-on-surface">32</span>
+<span class="text-on-surface-variant font-medium">Pieces</span>
+</div>
+<p class="text-on-surface-variant text-xs mt-2">4 new this week</p>
+</div>
+<div class="bg-surface-container-low p-8 rounded-2xl border-l-4 border-tertiary">
+<div class="flex items-center justify-between mb-4">
+<span class="text-outline uppercase tracking-widest text-xs font-bold">Daily Streak</span>
+<span class="material-symbols-outlined text-tertiary">local_fire_department</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline font-extrabold text-on-surface">14</span>
+<span class="text-on-surface-variant font-medium">Days</span>
+</div>
+<p class="text-on-surface-variant text-xs mt-2">Personal best: 28 days</p>
+</div>
+</section>
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+<div class="lg:col-span-8 bg-surface-container-low p-8 rounded-2xl">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline text-xl font-bold">Practice Activity (Last 30 Days)</h3>
+<div class="flex gap-2">
+<span class="flex items-center gap-1 text-xs text-on-surface-variant"><div class="w-3 h-3 rounded-full bg-primary/40"></div> Low</span>
+<span class="flex items-center gap-1 text-xs text-on-surface-variant"><div class="w-3 h-3 rounded-full bg-primary"></div> Peak</span>
+</div>
+</div>
+<div class="flex items-end justify-between h-48 gap-2">
+<div class="flex-1 bg-primary/20 rounded-t-lg h-[20%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t-lg h-[45%]"></div>
+<div class="flex-1 bg-primary/30 rounded-t-lg h-[30%]"></div>
+<div class="flex-1 bg-primary/60 rounded-t-lg h-[60%]"></div>
+<div class="flex-1 bg-primary/80 rounded-t-lg h-[80%]"></div>
+<div class="flex-1 bg-primary rounded-t-lg h-[100%]"></div>
+<div class="flex-1 bg-primary/70 rounded-t-lg h-[75%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t-lg h-[40%]"></div>
+<div class="flex-1 bg-primary/20 rounded-t-lg h-[25%]"></div>
+<div class="flex-1 bg-primary/50 rounded-t-lg h-[55%]"></div>
+<div class="flex-1 bg-primary/90 rounded-t-lg h-[95%]"></div>
+<div class="flex-1 bg-primary rounded-t-lg h-[100%]"></div>
+<div class="flex-1 bg-primary/60 rounded-t-lg h-[65%]"></div>
+<div class="flex-1 bg-primary/30 rounded-t-lg h-[35%]"></div>
+</div>
+<div class="flex justify-between mt-4 text-xs text-outline font-medium uppercase tracking-widest">
+<span>30 Days ago</span>
+<span>Today</span>
+</div>
+</div>
+<div class="lg:col-span-4 bg-surface-container-low p-8 rounded-2xl flex flex-col">
+<h3 class="font-headline text-xl font-bold mb-6">Skill Breakdown</h3>
+<div class="space-y-6 flex-1">
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-on-surface font-medium">Sight Reading</span>
+<span class="text-secondary font-bold">82%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[82%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-on-surface font-medium">Rhythm Accuracy</span>
+<span class="text-tertiary font-bold">68%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[68%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-on-surface font-medium">Musicality</span>
+<span class="text-primary font-bold">91%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[91%] rounded-full"></div>
+</div>
+</div>
+</div>
+<button class="mt-8 text-primary font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all">
+                    View full assessment <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</section>
+<section class="mb-16">
+<h3 class="font-headline text-2xl font-bold mb-8">Achievements &amp; Badges</h3>
+<div class="flex flex-wrap gap-6">
+<div class="group bg-surface-container-low p-6 rounded-2xl text-center w-40 flex flex-col items-center hover:bg-surface-bright transition-all cursor-default">
+<div class="w-20 h-20 mb-4 bg-primary/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<span class="text-on-surface text-sm font-bold block leading-tight">First Scale</span>
+<span class="text-outline text-[10px] mt-1 uppercase tracking-tighter">Oct 12, 2023</span>
+</div>
+<div class="group bg-surface-container-low p-6 rounded-2xl text-center w-40 flex flex-col items-center hover:bg-surface-bright transition-all cursor-default">
+<div class="w-20 h-20 mb-4 bg-secondary/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-secondary" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<span class="text-on-surface text-sm font-bold block leading-tight">7-Day Streak</span>
+<span class="text-outline text-[10px] mt-1 uppercase tracking-tighter">Nov 04, 2023</span>
+</div>
+<div class="group bg-surface-container-low p-6 rounded-2xl text-center w-40 flex flex-col items-center hover:bg-surface-bright transition-all cursor-default">
+<div class="w-20 h-20 mb-4 bg-tertiary/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-tertiary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<span class="text-on-surface text-sm font-bold block leading-tight">Perfect Score</span>
+<span class="text-outline text-[10px] mt-1 uppercase tracking-tighter">Dec 20, 2023</span>
+</div>
+<div class="group bg-surface-container-low p-6 rounded-2xl text-center w-40 flex flex-col items-center opacity-40 hover:opacity-100 transition-all cursor-help grayscale group-hover:grayscale-0">
+<div class="w-20 h-20 mb-4 border-2 border-dashed border-outline-variant rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-outline-variant">lock</span>
+</div>
+<span class="text-outline text-sm font-bold block leading-tight">Sonata King</span>
+<span class="text-outline text-[10px] mt-1 uppercase tracking-tighter">Locked</span>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<div>
+<h3 class="font-headline text-2xl font-bold mb-8">Recently Played</h3>
+<div class="space-y-6">
+<div class="group flex items-center gap-4 bg-surface-container-low p-4 rounded-xl hover:bg-surface-bright transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Album art for classical piano music" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnHkCgeNp0-Fc1mG1nQ7VJRrZor7iqpcsuyxGby13IbiIK907dO9SFNhxq0lS9VhrTE95hm5LAf1szhzTTPMp7KgGnaaVtFDqsGaq7OiQQ51nPddMTwsM0Lwgl7V_5NikYCWppR-Zd4wBFnSCbBrPYHGRVwv4mFLp8uwYOpP0_VFejXPI0WJQBLPzdWIle3ypq9FWC3eh-9c8EIWG_4P0zMTwzhJl89NIOn4DMq8Mhcfz0m9ELt2KLMrrWca5GfaHdcvRyywLeQ9SU"/>
+</div>
+<div class="flex-1">
+<h4 class="text-on-surface font-bold">Clair de Lune</h4>
+<p class="text-on-surface-variant text-sm">Claude Debussy • Last played 2h ago</p>
+</div>
+<div class="text-tertiary font-bold text-sm bg-tertiary/10 px-3 py-1 rounded-full">94% Mastery</div>
+</div>
+<div class="group flex items-center gap-4 bg-surface-container-low p-4 rounded-xl hover:bg-surface-bright transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Close up of piano keys" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEvkuj7B9MXbiYDU-gtjhhfhZ8Oo0uWRruh92s_sTY0zvFdmtMDxxOgV81EjJHxlWYOdR0rTkLaMhgYXECQHvlPWLFbDvAW9t5iVkkwFqXq6Vt6QX_4dObB3qynGM7NzsYZxGrndzkPOL4keG0_FDGdTK741z4MKtczLPm1FPTwxmKz7-qBRe0qzKgDQLYtLDutWkOCAe4dwi_YFSHqj_wbtlN2jw3pX4s3G5x40dVbfEgWANMpLR_m8n4fe8sFJtgmXBwZ0BCPgqW"/>
+</div>
+<div class="flex-1">
+<h4 class="text-on-surface font-bold">Nocturne Op. 9 No. 2</h4>
+<p class="text-on-surface-variant text-sm">Frédéric Chopin • Last played 1d ago</p>
+</div>
+<div class="text-secondary font-bold text-sm bg-secondary/10 px-3 py-1 rounded-full">72% Mastery</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-headline text-2xl font-bold mb-8">Favorite Songs</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative group aspect-video rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Abstract musical visualizer background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVa9VJOntpNhPZEfKoXl8RY5ywIEEc0N1HWN5H9E3oHL1DC6B6HQtLR41eiaHwQItL7DiQRg6Nm5PSswhkgPqu21eSZTDonUjTYhclNaAUVDzeZXtZ8LiRaq0JZaP-1Qslui99v4q3NYM5814PTcgYRkuVCPEm9A1zoy0sIjG6nVi-CdlkrCVulO-zzLiHJGp8mSTqyPlMaPwzdjW9-cNmTCEGLEYpy8Y8gbzd9fSyKSMYsQHEJMbVVR-lFFFWkj0TCOn5H5X5uk2J"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/20 to-transparent p-4 flex flex-col justify-end">
+<h4 class="text-on-surface font-bold truncate">Moonlight Sonata</h4>
+<p class="text-on-surface-variant text-xs">Beethoven</p>
+</div>
+</div>
+<div class="relative group aspect-video rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Stage lighting in a music hall" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEXIPE_nVZ59DiF8GRrYkfDGWqa4WtVb8gTzLN7fuHHFbHPEb1k-mZhsORBDsTLSpeiPkZUORd5kKcsdOfz8b9BwfJY3cK60FTfdTbhcvl2_JqktXd-owXx-Bybr5HCEN9preNHMEvHaZ8LY5UGqy7DIDuVkubHxURtVhEdk7h8ZlfGtrdURWgW8ie327vXWgwRLpC56OeL9C22mx9xO2jd5JJVWj7i2znrJdP-5NFz6Jy7Ovt6vuXPFTK_J9MU_9NlkLAdwhOz0Ob"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/20 to-transparent p-4 flex flex-col justify-end">
+<h4 class="text-on-surface font-bold truncate">The River Flows in You</h4>
+<p class="text-on-surface-variant text-xs">Yiruma</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 py-3 bg-surface-container-low border border-outline-variant/15 text-on-surface-variant font-medium rounded-xl hover:bg-surface-container-high transition-colors">
+                    View all favorites
+                </button>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-safe md:hidden bg-[#2d3449]/60 backdrop-blur-xl rounded-t-2xl shadow-[0_-10px_30px_rgba(6,14,32,0.5)] font-inter text-[10px] uppercase tracking-widest">
+<a class="flex flex-col items-center justify-center text-[#8e90a2] hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined mb-1">explore</span>
+<span>Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#8e90a2] hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined mb-1">music_note</span>
+<span>Songs</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#8e90a2] hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined mb-1">piano</span>
+<span>Practice</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#e9c349] scale-110" href="#">
+<span class="material-symbols-outlined mb-1">account_circle</span>
+<span>Profile</span>
+</a>
+</nav>
+</body></html>
