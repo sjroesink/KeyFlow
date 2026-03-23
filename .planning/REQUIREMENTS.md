@@ -10,11 +10,11 @@
 - [x] **AUDIO-01**: App captures microphone audio via Web Audio API with user permission
 - [x] **AUDIO-02**: App detects single piano notes in real-time from microphone input
 - [ ] **AUDIO-03**: App detects chords (multiple simultaneous notes) from microphone input
-- [ ] **AUDIO-04**: App plays song audio so user can hear what the piece should sound like
+- [x] **AUDIO-04**: App plays song audio so user can hear what the piece should sound like
 
 ### Visualization
 
-- [ ] **VIZ-01**: Falling notes (piano roll) display scrolls toward on-screen keyboard synced to song timing
+- [x] **VIZ-01**: Falling notes (piano roll) display scrolls toward on-screen keyboard synced to song timing
 - [x] **VIZ-02**: On-screen piano keyboard highlights expected notes and detected notes in distinct colors
 - [ ] **VIZ-03**: Traditional sheet music view renders the current song with note highlighting
 
@@ -62,8 +62,8 @@
 | AUDIO-01 | Phase 1 | Complete |
 | AUDIO-02 | Phase 1 | Complete |
 | AUDIO-03 | Phase 3 | Pending |
-| AUDIO-04 | Phase 2 | Pending |
-| VIZ-01 | Phase 2 | Pending |
+| AUDIO-04 | Phase 2 | Complete |
+| VIZ-01 | Phase 2 | Complete |
 | VIZ-02 | Phase 2 | Complete |
 | VIZ-03 | Phase 4 | Pending |
 | PRAC-01 | Phase 3 | Pending |
