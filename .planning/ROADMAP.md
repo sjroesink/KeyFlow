@@ -13,7 +13,7 @@ WebPianoLearner delivers a browser-based piano practice tool in four phases, ord
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Audio + MIDI Foundation** - Microphone capture, single-note pitch detection, and MIDI file parsing (completed 2026-03-22)
-- [ ] **Phase 2: Visualization + Playback** - Falling notes piano roll, on-screen keyboard, and song audio playback
+- [x] **Phase 2: Visualization + Playback** - Falling notes piano roll, on-screen keyboard, and song audio playback (completed 2026-03-23)
 - [ ] **Phase 3: Practice Core** - Wait mode, chord detection, and loop practice integrated with the visualization
 - [ ] **Phase 4: Library + Sheet Music** - Song library management, progress persistence, and sheet music view
 
@@ -44,7 +44,7 @@ Plans:
   2. On-screen keyboard highlights expected notes as they arrive at the play line
   3. User can play, pause, and seek through a song using playback controls
   4. User hears a synthesized audio rendition of the song during playback
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 
 Plans:
 - [ ] 02-01-PLAN.md — Nocturne Tailwind theme, playback types/store, and CSS piano keyboard with highlighting
@@ -89,6 +89,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Audio + MIDI Foundation | 3/3 | Complete   | 2026-03-22 |
-| 2. Visualization + Playback | 0/3 | Not started | - |
+| 2. Visualization + Playback | 3/3 | Complete   | 2026-03-23 |
 | 3. Practice Core | 0/0 | Not started | - |
 | 4. Library + Sheet Music | 0/0 | Not started | - |
