@@ -6,14 +6,18 @@ import { AudioPipeline } from '../audio/AudioPipeline';
 import { useSongStore } from '../store/songStore';
 import { usePlaybackStore } from '../store/playbackStore';
 
-export function usePlaybackEngine() {
+export function usePlaybackEngine(externalAudioContext?: AudioContext) {
   const engineRef = useRef<PlaybackEngine | null>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
   const [instrumentLoaded, setInstrumentLoaded] = useState(false);
   const song = useSongStore((s) => s.song);
 
   // Initialize engine on mount
   useEffect(() => {
-    const audioContext = AudioPipeline.createAudioContext();
+    const audioContext = externalAudioContext ?? AudioPipeline.createAudioContext();
+    const ownedContext = !externalAudioContext;
+    audioContextRef.current = audioContext;
+
     const piano = new SplendidGrandPiano(audioContext);
 
     const engine = new PlaybackEngine(audioContext, piano);
@@ -31,9 +35,9 @@ export function usePlaybackEngine() {
     return () => {
       engine.dispose();
       piano.stop();
-      audioContext.close();
+      if (ownedContext) audioContext.close();
     };
-  }, []);
+  }, [externalAudioContext]);
 
   // When song changes, load into engine
   useEffect(() => {
@@ -72,5 +76,18 @@ export function usePlaybackEngine() {
   const seek = useCallback((t: number) => engineRef.current?.seek(t), []);
   const stop = useCallback(() => engineRef.current?.stop(), []);
 
-  return { canvasRefCallback, play, pause, seek, stop, instrumentLoaded };
+  const setPracticeEnabled = useCallback((enabled: boolean) => {
+    engineRef.current?.setPracticeEnabled(enabled);
+  }, []);
+
+  return {
+    canvasRefCallback,
+    play,
+    pause,
+    seek,
+    stop,
+    instrumentLoaded,
+    setPracticeEnabled,
+    audioContext: audioContextRef.current,
+  };
 }

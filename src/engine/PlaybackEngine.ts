@@ -3,6 +3,8 @@ import { NoteScheduler, type SchedulerInstrument } from './NoteScheduler';
 import { PianoRollRenderer } from '../visualization/PianoRollRenderer';
 import { getActiveNotes } from '../visualization/noteSearch';
 import { usePlaybackStore } from '../store/playbackStore';
+import { usePracticeStore } from '../store/practiceStore';
+import { evaluateNotes } from './NoteEvaluator';
 
 const STORE_SYNC_INTERVAL = 1000 / 15; // ~15Hz sync to React
 
@@ -17,6 +19,11 @@ export class PlaybackEngine {
   private playing = false;
   private rafId: number | null = null;
   private lastStoreSync = 0;
+
+  // Practice mode state
+  private practiceEnabled = false;
+  private frozenTime: number | null = null;
+  private waitingForNotes: number[] = [];
 
   constructor(audioContext: AudioContext, instrument: SchedulerInstrument) {
     this.audioContext = audioContext;
@@ -81,18 +88,63 @@ export class PlaybackEngine {
   stop(): void {
     this.pause();
     this.startOffset = 0;
+    this.frozenTime = null;
+    this.waitingForNotes = [];
     usePlaybackStore.getState().reset();
   }
 
   dispose(): void {
     this.stop();
+    this.frozenTime = null;
+    this.waitingForNotes = [];
     this.renderer = null;
     this.song = null;
   }
 
+  /** Enable or disable practice (wait) mode */
+  setPracticeEnabled(enabled: boolean): void {
+    this.practiceEnabled = enabled;
+    if (!enabled) {
+      this.frozenTime = null;
+      usePracticeStore.getState().setIsWaiting(false);
+    }
+  }
+
+  /** Expose AudioContext for sharing with mic pipeline */
+  getAudioContext(): AudioContext {
+    return this.audioContext;
+  }
+
   private tick = (): void => {
     if (!this.playing || !this.song) return;
+
+    // Wait-mode resume check: if frozen, see if user played correct notes
+    if (this.practiceEnabled && this.frozenTime !== null) {
+      const detected = usePracticeStore.getState().detectedChord;
+      const result = evaluateNotes(this.waitingForNotes, detected);
+      usePracticeStore.getState().setLastEvaluation(result);
+      if (result.matched) {
+        // Resume: recalibrate clock from frozen position
+        this.startClockTime = this.audioContext.currentTime;
+        this.startOffset = this.frozenTime;
+        this.frozenTime = null;
+        usePracticeStore.getState().setIsWaiting(false);
+      } else {
+        // Stay frozen: render at frozen time, schedule next frame, return
+        this.renderer?.draw(this.frozenTime, this.song.notes);
+        this.rafId = requestAnimationFrame(this.tick);
+        return;
+      }
+    }
+
     const t = this.currentTime;
+
+    // Loop boundary check
+    const loopRegion = usePracticeStore.getState().loopRegion;
+    if (loopRegion && t >= loopRegion.end) {
+      this.seek(loopRegion.start);
+      return;
+    }
 
     // Auto-stop at end of song
     if (t >= this.song.duration) {
@@ -101,6 +153,25 @@ export class PlaybackEngine {
       usePlaybackStore.getState().setCurrentTime(0);
       usePlaybackStore.getState().setStatus('ready');
       return;
+    }
+
+    // Wait-mode freeze check: freeze if expected notes don't match detected
+    if (this.practiceEnabled) {
+      const expected = getActiveNotes(this.song.notes, t);
+      if (expected.length > 0) {
+        const detected = usePracticeStore.getState().detectedChord;
+        const result = evaluateNotes(expected, detected);
+        usePracticeStore.getState().setLastEvaluation(result);
+        if (!result.matched) {
+          this.frozenTime = t;
+          this.waitingForNotes = expected;
+          usePracticeStore.getState().setIsWaiting(true, expected);
+          // Render frozen frame and continue loop
+          this.renderer?.draw(t, this.song.notes);
+          this.rafId = requestAnimationFrame(this.tick);
+          return;
+        }
+      }
     }
 
     // Render canvas
