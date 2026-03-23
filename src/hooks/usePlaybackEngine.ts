@@ -80,6 +80,10 @@ export function usePlaybackEngine(externalAudioContext?: AudioContext) {
     engineRef.current?.setPracticeEnabled(enabled);
   }, []);
 
+  const skipWait = useCallback(() => {
+    engineRef.current?.skipWait();
+  }, []);
+
   return {
     canvasRefCallback,
     play,
@@ -88,6 +92,7 @@ export function usePlaybackEngine(externalAudioContext?: AudioContext) {
     stop,
     instrumentLoaded,
     setPracticeEnabled,
+    skipWait,
     audioContext: audioContextRef.current,
   };
 }

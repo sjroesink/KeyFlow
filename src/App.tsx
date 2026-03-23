@@ -1,12 +1,32 @@
+import { useEffect } from 'react';
 import { MicrophoneSetup } from './components/MicrophoneSetup';
 import { NoteDisplay } from './components/NoteDisplay';
 import { MidiImport } from './components/MidiImport';
 import { SongInfo } from './components/SongInfo';
 import { PracticeView } from './components/PracticeView';
 import { useSongStore } from './store/songStore';
+import { parseMidiFile } from './midi/MidiParser';
+import defaultMidi from './assets/mozart-piano-concerto-21-2-elvira-madigan-piano-solo.mid?url';
 
 function App() {
   const song = useSongStore((s) => s.song);
+
+  // Auto-load bundled MIDI file on first visit
+  useEffect(() => {
+    if (song) return;
+    fetch(defaultMidi)
+      .then((r) => r.blob())
+      .then((blob) => {
+        const file = new File([blob], 'Elvira Madigan.mid', { type: 'audio/midi' });
+        return parseMidiFile(file);
+      })
+      .then((parsed) => {
+        useSongStore.getState().setSong(parsed);
+      })
+      .catch(() => {
+        // Fallback: let user import manually
+      });
+  }, [song]);
 
   if (song) {
     return <PracticeView />;

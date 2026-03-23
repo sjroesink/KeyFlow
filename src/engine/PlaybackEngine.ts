@@ -101,6 +101,18 @@ export class PlaybackEngine {
     this.song = null;
   }
 
+  /** Skip past the current wait-mode freeze point */
+  skipWait(): void {
+    if (this.frozenTime !== null) {
+      // Advance slightly past the frozen point so we don't re-freeze on the same notes
+      this.startClockTime = this.audioContext.currentTime;
+      this.startOffset = this.frozenTime + 0.05;
+      this.frozenTime = null;
+      this.waitingForNotes = [];
+      usePracticeStore.getState().setIsWaiting(false);
+    }
+  }
+
   /** Enable or disable practice (wait) mode */
   setPracticeEnabled(enabled: boolean): void {
     this.practiceEnabled = enabled;
