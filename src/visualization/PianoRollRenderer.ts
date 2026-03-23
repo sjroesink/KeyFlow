@@ -4,33 +4,32 @@ import { NOTE_COLORS, isBlackKey } from './colors';
 
 const MIN_MIDI = 21;  // A0
 const MAX_MIDI = 108; // C8
-const WHITE_KEY_WIDTH = 44; // px — matches CSS .piano-key-white
+const WHITE_KEYS = 52; // 88-key piano has 52 white keys
 
 /**
- * Build a lookup table mapping MIDI note number to x-position and width
- * that matches the CSS piano keyboard layout exactly.
- * White keys: 44px wide, laid out sequentially.
- * Black keys: 28px wide, centered between their adjacent white keys.
+ * Build a normalized lookup table (0..1 range) mapping MIDI note to
+ * fractional x-position and width relative to keyboard total width.
  */
-function buildKeyPositions(): Map<number, { x: number; width: number }> {
-  const positions = new Map<number, { x: number; width: number }>();
-  let whiteX = 0;
+function buildNormalizedPositions(): Map<number, { xFrac: number; wFrac: number }> {
+  const positions = new Map<number, { xFrac: number; wFrac: number }>();
+  // Black key width as fraction of white key width (from CSS: 20/30 or 26/40 ≈ 0.65)
+  const blackFrac = 0.65;
+  let whiteIndex = 0;
 
   for (let midi = MIN_MIDI; midi <= MAX_MIDI; midi++) {
     if (isBlackKey(midi)) {
-      // Black key sits between the previous and next white key
-      const bw = 28;
-      positions.set(midi, { x: whiteX - bw / 2, width: bw });
+      const bw = blackFrac / WHITE_KEYS;
+      positions.set(midi, { xFrac: (whiteIndex / WHITE_KEYS) - bw / 2, wFrac: bw });
     } else {
-      positions.set(midi, { x: whiteX, width: WHITE_KEY_WIDTH });
-      whiteX += WHITE_KEY_WIDTH;
+      positions.set(midi, { xFrac: whiteIndex / WHITE_KEYS, wFrac: 1 / WHITE_KEYS });
+      whiteIndex++;
     }
   }
 
   return positions;
 }
 
-const KEY_POSITIONS = buildKeyPositions();
+const NORM_POSITIONS = buildNormalizedPositions();
 
 export class PianoRollRenderer {
   private ctx: CanvasRenderingContext2D;
@@ -39,40 +38,25 @@ export class PianoRollRenderer {
     this.ctx = ctx;
   }
 
-  /**
-   * Draw falling notes for the given song time.
-   * Notes fall from top to bottom. Play line at very bottom.
-   * viewWindow = seconds of song visible above the play line (default 4s).
-   */
   draw(currentTime: number, notes: SongNote[], viewWindow: number = 4): void {
     const { ctx } = this;
     const w = ctx.canvas.clientWidth;
     const h = ctx.canvas.clientHeight;
     const playLineY = h - 2;
 
-    // Clear with background color
+    // Clear
     ctx.fillStyle = NOTE_COLORS.CANVAS_BG;
     ctx.fillRect(0, 0, w, h);
 
-    // Scale factor: canvas width vs keyboard pixel width (52 white keys * 44px)
-    const keyboardWidth = 52 * WHITE_KEY_WIDTH; // 2288
-    const scale = w / keyboardWidth;
-
-    // Debug: log once per second
-    if (Math.floor(currentTime) !== Math.floor(currentTime - 0.017)) {
-      console.debug('[piano-roll]', { w, h, scale, visibleNotes: getVisibleNotes(notes, currentTime, viewWindow).length, currentTime: currentTime.toFixed(2) });
-    }
-
-    // Draw visible notes — positioned to match the keyboard below
+    // Draw visible notes — positioned using normalized fractions
     const visible = getVisibleNotes(notes, currentTime, viewWindow);
     for (const note of visible) {
-      const keyPos = KEY_POSITIONS.get(note.midi);
-      if (!keyPos) continue;
+      const pos = NORM_POSITIONS.get(note.midi);
+      if (!pos) continue;
 
-      const x = keyPos.x * scale;
-      const noteWidth = keyPos.width * scale;
+      const x = pos.xFrac * w;
+      const noteWidth = pos.wFrac * w;
 
-      // Map time to Y: currentTime -> playLineY, future -> 0
       const noteBottomY = playLineY - ((note.startTime - currentTime) / viewWindow) * playLineY;
       const noteTopY = noteBottomY - (note.duration / viewWindow) * playLineY;
       const noteHeight = Math.max(noteBottomY - noteTopY, 2);

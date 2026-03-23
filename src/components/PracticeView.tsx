@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { Note } from 'tonal';
 import { PianoKeyboard } from './PianoKeyboard';
 import { PlaybackControls } from './PlaybackControls';
@@ -9,21 +9,29 @@ import { useSongStore } from '../store/songStore';
 import { usePracticeStore } from '../store/practiceStore';
 import { usePlaybackStore } from '../store/playbackStore';
 
-const WHITE_KEY_COUNT = 52;
-const WHITE_KEY_WIDTH = 44;
-const KEYBOARD_WIDTH = WHITE_KEY_COUNT * WHITE_KEY_WIDTH;
-
 export function PracticeView() {
   const song = useSongStore((s) => s.song);
   const { canvasRefCallback, play, pause, seek, instrumentLoaded, setPracticeEnabled, skipWait } =
     usePlaybackEngine();
   const { start: startMic, stop: stopMic } = useAudioPipeline();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const keyboardRef = useRef<HTMLDivElement>(null);
   const micStartedRef = useRef(false);
+  const [keyboardWidth, setKeyboardWidth] = useState(0);
 
   const isWaiting = usePracticeStore((s) => s.isWaiting);
   const waitingForNotes = usePracticeStore((s) => s.waitingForNotes);
   const activeNotes = usePlaybackStore((s) => s.activeNotes);
+
+  // Measure keyboard width
+  useEffect(() => {
+    if (!keyboardRef.current) return;
+    const measure = () => setKeyboardWidth(keyboardRef.current?.scrollWidth ?? 0);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(keyboardRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   // Cleanup mic on unmount
   useEffect(() => {
@@ -43,16 +51,16 @@ export function PracticeView() {
 
   // Auto-scroll to center on active/waiting notes
   useEffect(() => {
-    if (!scrollRef.current) return;
+    if (!scrollRef.current || !keyboardWidth) return;
     const notes = waitingForNotes.length > 0 ? waitingForNotes : activeNotes;
     if (notes.length === 0) return;
 
     const avgMidi = notes.reduce((a, b) => a + b, 0) / notes.length;
-    const keyX = ((avgMidi - 21) / 88) * KEYBOARD_WIDTH;
+    const keyX = ((avgMidi - 21) / 88) * keyboardWidth;
     const containerWidth = scrollRef.current.clientWidth;
     const targetScroll = keyX - containerWidth / 2;
     scrollRef.current.scrollTo({ left: targetScroll, behavior: 'smooth' });
-  }, [activeNotes, waitingForNotes]);
+  }, [activeNotes, waitingForNotes, keyboardWidth]);
 
   const handlePlay = useCallback(() => {
     ensureMic();
@@ -90,7 +98,7 @@ export function PracticeView() {
               {song.name}
             </h1>
             <span className="text-[10px] font-label uppercase tracking-widest text-outline">
-              {song.bpm} BPM &middot; {song.notes.length} notes
+              {Math.round(song.bpm)} BPM &middot; {song.notes.length} notes
             </span>
           </div>
         </div>
@@ -102,9 +110,9 @@ export function PracticeView() {
 
       {/* Scrollable piano roll + keyboard unit */}
       <div ref={scrollRef} className="flex-1 overflow-x-auto overflow-y-hidden flex flex-col">
-        <div className="flex flex-col flex-1" style={{ width: `${KEYBOARD_WIDTH}px`, minWidth: '100%' }}>
+        <div className="flex flex-col flex-1" style={{ width: keyboardWidth || undefined, minWidth: '100%' }}>
           {/* Canvas — falling notes */}
-          <div className="flex-1 relative" style={{ minWidth: `${KEYBOARD_WIDTH}px` }}>
+          <div className="flex-1 relative" style={{ minWidth: keyboardWidth || undefined }}>
             <canvas
               ref={canvasRefCallback}
               className="absolute inset-0 w-full h-full"
@@ -124,7 +132,7 @@ export function PracticeView() {
           </div>
 
           {/* Keyboard */}
-          <div className="shrink-0 bg-surface-container-low" style={{ minWidth: `${KEYBOARD_WIDTH}px` }}>
+          <div ref={keyboardRef} className="shrink-0 bg-surface-container-low">
             <PianoKeyboard />
           </div>
         </div>
