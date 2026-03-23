@@ -27,16 +27,16 @@ describe('evaluateNotes', () => {
     expect(result.matchedCount).toBe(3);
   });
 
-  it('returns matched=true for partial chord match at threshold 0.67', () => {
-    // 2/3 = 0.667 >= 0.67
-    const result = evaluateNotes([60, 64, 67], [60, 64], { matchThreshold: 0.67 });
+  it('returns matched=true for partial chord match at threshold 0.66', () => {
+    // 2/3 = 0.6667 >= 0.66
+    const result = evaluateNotes([60, 64, 67], [60, 64], { matchThreshold: 0.66 });
     expect(result.matched).toBe(true);
     expect(result.matchedCount).toBe(2);
   });
 
-  it('returns matched=false for insufficient partial match at threshold 0.67', () => {
-    // 1/3 = 0.333 < 0.67
-    const result = evaluateNotes([60, 64, 67], [60], { matchThreshold: 0.67 });
+  it('returns matched=false for insufficient partial match at threshold 0.66', () => {
+    // 1/3 = 0.333 < 0.66
+    const result = evaluateNotes([60, 64, 67], [60], { matchThreshold: 0.66 });
     expect(result.matched).toBe(false);
     expect(result.matchedCount).toBe(1);
   });
