@@ -22,7 +22,7 @@ export class PianoRollRenderer {
     const { ctx } = this;
     const w = ctx.canvas.clientWidth;
     const h = ctx.canvas.clientHeight;
-    const playLineY = h * 0.9;
+    const playLineY = h - 2; // Play line at very bottom — notes fall onto the keyboard below
     const keyWidth = w / TOTAL_KEYS;
 
     // Clear with background color
@@ -46,13 +46,6 @@ export class PianoRollRenderer {
       ctx.roundRect(x + 1, noteTopY, keyWidth - 2, noteHeight, 3);
       ctx.fill();
     }
-
-    // Bottom gradient overlay (transparent -> surface/40)
-    const gradient = ctx.createLinearGradient(0, playLineY, 0, h);
-    gradient.addColorStop(0, 'transparent');
-    gradient.addColorStop(1, NOTE_COLORS.CANVAS_GRADIENT_END);
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, playLineY, w, h - playLineY);
 
     // Play line with glow
     ctx.shadowColor = NOTE_COLORS.PLAY_LINE_GLOW;

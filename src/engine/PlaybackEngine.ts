@@ -122,6 +122,15 @@ export class PlaybackEngine {
     if (this.practiceEnabled && this.frozenTime !== null) {
       const detected = usePracticeStore.getState().detectedChord;
       const result = evaluateNotes(this.waitingForNotes, detected);
+      if (detected.length > 0) {
+        console.debug('[wait-mode]', {
+          waiting: this.waitingForNotes,
+          detected,
+          matched: result.matched,
+          expectedPC: result.expectedPitchClasses,
+          detectedPC: result.detectedPitchClasses,
+        });
+      }
       usePracticeStore.getState().setLastEvaluation(result);
       if (result.matched) {
         // Resume: recalibrate clock from frozen position

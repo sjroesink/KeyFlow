@@ -58,7 +58,7 @@ describe('PianoRollRenderer', () => {
     // Play line should be drawn with stroke
     expect(ctx.stroke).toHaveBeenCalled();
     // moveTo and lineTo should have been called for the play line
-    const playLineY = 600 * 0.9; // 540
+    const playLineY = 600 - 2; // Play line at very bottom
     expect(ctx.moveTo).toHaveBeenCalledWith(0, playLineY);
     expect(ctx.lineTo).toHaveBeenCalledWith(880, playLineY);
   });
