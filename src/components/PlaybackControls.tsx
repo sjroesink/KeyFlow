@@ -23,7 +23,6 @@ export function PlaybackControls({ onPlay, onPause, onSeek }: PlaybackControlsPr
   });
 
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Don't seek if we just finished a shift+drag
     if (dragRef.current.dragging) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const fraction = (e.clientX - rect.left) / rect.width;
@@ -52,18 +51,13 @@ export function PlaybackControls({ onPlay, onPause, onSeek }: PlaybackControlsPr
       const end = Math.max(startFrac, endFraction) * duration;
 
       dragRef.current.dragging = false;
-
-      // setLoopRegion validates minimum 1s duration
       usePracticeStore.getState().setLoopRegion({ start, end });
     },
     [duration],
   );
 
-  const handleMouseMove = useCallback((_e: MouseEvent) => {
-    // Could render a preview here in future; currently a no-op during drag
-  }, []);
+  const handleMouseMove = useCallback((_e: MouseEvent) => {}, []);
 
-  // Attach window listeners for drag tracking
   useEffect(() => {
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseup', handleMouseUp);
@@ -83,21 +77,43 @@ export function PlaybackControls({ onPlay, onPause, onSeek }: PlaybackControlsPr
   const canPlay = status === 'ready' || status === 'paused';
 
   return (
-    <div className="w-full max-w-5xl flex flex-col gap-3">
-      {/* Progress bar */}
+    <div className="w-full flex items-center gap-3">
+      {/* Time */}
+      <span className="text-[10px] font-label text-outline tabular-nums shrink-0">
+        {formatTime(currentTime)}
+      </span>
+
+      {/* Play/Pause */}
+      <button
+        onClick={isPlaying ? onPause : onPlay}
+        disabled={!canPlay && !isPlaying}
+        className="flex items-center justify-center w-8 h-8 shrink-0 rounded-full bg-gradient-to-br from-primary-container to-primary text-on-primary disabled:opacity-40 hover:scale-105 transition-transform shadow-lg"
+      >
+        {status === 'loading' ? (
+          <span className="text-[10px] font-label">...</span>
+        ) : isPlaying ? (
+          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <rect x="6" y="4" width="4" height="16" />
+            <rect x="14" y="4" width="4" height="16" />
+          </svg>
+        ) : (
+          <svg className="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
+            <polygon points="5,3 19,12 5,21" />
+          </svg>
+        )}
+      </button>
+
+      {/* Progress bar — fills remaining space */}
       <div
         ref={progressBarRef}
-        className="relative w-full h-1.5 bg-surface-container-highest rounded-full cursor-pointer"
+        className="relative flex-1 h-1.5 bg-surface-container-highest rounded-full cursor-pointer"
         onClick={handleProgressClick}
         onMouseDown={handleMouseDown}
       >
-        {/* Playback progress */}
         <div
-          className="h-full bg-primary rounded-full shadow-[0_0_15px_rgba(181,196,255,0.4)] transition-[width] duration-100"
+          className="h-full bg-primary rounded-full shadow-[0_0_10px_rgba(181,196,255,0.3)] transition-[width] duration-100"
           style={{ width: `${progress}%` }}
         />
-
-        {/* Loop region overlay */}
         {loopRegion && duration > 0 && (
           <div
             className="absolute top-0 h-full bg-primary/20 border-l-2 border-r-2 border-primary/50 pointer-events-none rounded-full"
@@ -109,45 +125,10 @@ export function PlaybackControls({ onPlay, onPause, onSeek }: PlaybackControlsPr
         )}
       </div>
 
-      {/* Hint text */}
-      {!loopRegion && (
-        <span className="text-[10px] text-outline/50 text-center -mt-1">
-          Shift+drag to set loop
-        </span>
-      )}
-
-      {/* Controls row */}
-      <div className="flex items-center justify-between">
-        <span className="text-xs font-label text-outline tabular-nums">
-          {formatTime(currentTime)}
-        </span>
-
-        <div className="flex items-center gap-4">
-          {/* Play/Pause button - pill-shaped primary gradient per DESIGN.md */}
-          <button
-            onClick={isPlaying ? onPause : onPlay}
-            disabled={!canPlay && !isPlaying}
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-primary-container to-primary text-on-primary disabled:opacity-40 hover:scale-105 transition-transform shadow-lg"
-          >
-            {status === 'loading' ? (
-              <span className="text-sm font-label">...</span>
-            ) : isPlaying ? (
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <rect x="6" y="4" width="4" height="16" />
-                <rect x="14" y="4" width="4" height="16" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24">
-                <polygon points="5,3 19,12 5,21" />
-              </svg>
-            )}
-          </button>
-        </div>
-
-        <span className="text-xs font-label text-outline tabular-nums">
-          {formatTime(duration)}
-        </span>
-      </div>
+      {/* Duration */}
+      <span className="text-[10px] font-label text-outline tabular-nums shrink-0">
+        {formatTime(duration)}
+      </span>
     </div>
   );
 }
